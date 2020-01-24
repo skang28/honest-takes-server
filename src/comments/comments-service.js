@@ -19,7 +19,7 @@ const CommentsService = {
           .where({ id })
           .delete()
       },
-      updateNote(knex, id, newCommentsFields) {
+      updateComment(knex, id, newCommentFields) {
         return knex('comments')
           .where({ id })
           .update(newCommentFields)

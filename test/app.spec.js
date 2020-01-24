@@ -62,12 +62,6 @@ context('test deleting and patching posts', () => {
     return db.into('posts').insert(testPost)
   })
 
-  it('DELETE /api/posts/:post_id responds with 200', () => {
-    return supertest(app)
-      .delete(`/api/posts/1`)
-      .expect(204)
-  })
-
   it('PATCH /api/posts/:post_id responds with 204', () => {
     return supertest(app)
       .patch(`/api/posts/1`)
@@ -75,12 +69,11 @@ context('test deleting and patching posts', () => {
       .send(testPatch)
       .expect(204)
   })
-})
 
-  it('GET /api/comments responds with 200', () => {
+  it('DELETE /api/posts/:post_id responds with 200', () => {
     return supertest(app)
-      .get('/api/comments')
-      .expect(200)
+      .delete(`/api/posts/1`)
+      .expect(204)
   })
 
   it('POST /api/comments responds with 201', () => {
@@ -91,8 +84,18 @@ context('test deleting and patching posts', () => {
       .expect('Content-type', /json/)
       .expect(201)
   })
+})
+
+  it('GET /api/comments responds with 200', () => {
+    return supertest(app)
+      .get('/api/comments')
+      .expect(200)
+  })
 
 context('testing delete and patch for comments', () => {
+  beforeEach('insert post', () => {
+    return db.into('posts').insert(testPost)
+  })
   beforeEach('insert comment', () => {
     return db.into('comments').insert(testComment)
   })

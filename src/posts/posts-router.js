@@ -71,21 +71,21 @@ postsRouter
       .catch(next)
   })
   .patch(jsonParser, (req, res, next) => {
-    const { name, date_modified, folderId, content } = req.body
-    const noteToUpdate = { name, date_modified, folderId, content }
+    const { title, content, date_posted } = req.body
+    const postToUpdate = { title, content, date_posted }
 
-    const numberOfValues = Object.values(noteToUpdate).filter(Boolean).length
+    const numberOfValues = Object.values(postToUpdate).filter(Boolean).length
     if (numberOfValues === 0)
       return res.status(400).json({
         error: {
-          message: `Request body must content either 'name', 'date_modified', 'folderId', 'content'`
+          message: `Request body must content either 'title', 'content', and 'date posted'`
         }
       })
 
-    notesService.updateNote(
+    PostsService.updatePost(
       req.app.get('db'),
-      req.params.note_id,
-      noteToUpdate
+      req.params.post_id,
+      postToUpdate
     )
       .then(numRowsAffected => {
         res.status(204).end()

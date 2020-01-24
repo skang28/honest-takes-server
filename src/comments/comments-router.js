@@ -61,7 +61,7 @@ commentsRouter
     res.json(res.comment)
   })
   .delete((req, res, next) => {
-    commentsService.deleteComment(
+    CommentsService.deleteComment(
       req.app.get('db'),
       req.params.comment_id
     )
@@ -71,21 +71,21 @@ commentsRouter
       .catch(next)
   })
   .patch(jsonParser, (req, res, next) => {
-    const { name, date_modified, folderId, content } = req.body
-    const noteToUpdate = { name, date_modified, folderId, content }
+    const { content, date_posted, post_id } = req.body
+    const commentToUpdate = { content, date_posted, post_id }
 
-    const numberOfValues = Object.values(noteToUpdate).filter(Boolean).length
+    const numberOfValues = Object.values(commentToUpdate).filter(Boolean).length
     if (numberOfValues === 0)
       return res.status(400).json({
         error: {
-          message: `Request body must content either 'name', 'date_modified', 'folderId', 'content'`
+          message: `Request body must content either 'content', 'date posted', or 'post_id'`
         }
       })
 
-    notesService.updateNote(
+    CommentsService.updateComment(
       req.app.get('db'),
-      req.params.note_id,
-      noteToUpdate
+      req.params.comment_id,
+      commentToUpdate
     )
       .then(numRowsAffected => {
         res.status(204).end()
