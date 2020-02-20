@@ -1,26 +1,45 @@
-# Express Boilerplate!
+# Honest Takes
 
-This is a boilerplate project used for starting new projects!
+[Live App](https://honest-takes-app.skang28.now.sh/)
 
-## Set up
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## API Documentation
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+### Topics
+#### GET /topics
+Lists all topics that were used for the app's daily topic with the live daily topic being the most recent one.
 
-## Scripts
+### Posts
+#### GET /posts
+Lists all posts created on app.
 
-Start the application `npm start`
+#### POST /posts
+Creates a new post.
 
-Start nodemon for the application `npm run dev`
+#### GET /posts/post_id
+Retrieves an individual post.
 
-Run the tests `npm test`
+#### DELETE /posts/post_id
+Deletes an individual post.
 
-## Deploying
+#### PATCH /posts/post_id
+Updates an individual post.
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+### Comments
+#### GET /comments
+Lists all comments created on app.
+
+#### POST /comments
+Creates a new comment.
+
+#### GET /comments/comment_id
+Retrieves an individual comment.
+
+#### DELETE /comments/comment_id
+Deletes an individual comment.
+
+#### PATCH /comments/comment_id
+Updates an individual comment.
+
+## Technology Used
+Javascript, Node, Express, PostgreSQL

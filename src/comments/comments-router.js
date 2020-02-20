@@ -1,6 +1,5 @@
 const path = require('path')
 const express = require('express')
-const xss = require('xss')
 const CommentsService = require('./comments-service')
 
 const commentsRouter = express.Router()
