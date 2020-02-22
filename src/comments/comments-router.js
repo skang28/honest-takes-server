@@ -19,11 +19,18 @@ commentsRouter
     const { content, date_posted, post_id } = req.body
     const newComment = { content, date_posted, post_id }
 
-    for (const [key, value] of Object.entries(newComment))
-      if (value == null)
+    for (const [key, value] of Object.entries(newComment)) {
+      if (typeof value === 'string') {
+        newComment[key] = value.trim()
+      }
+    }
+
+    for (const [key, value] of Object.entries(newComment)) {
+      if (!value)
         return res.status(400).json({
-          error: { message: `Missing '${key}' in request body` }
+          error: { message: `Uh oh! Your entry wasn't accepted. Please ensure your comment has content!` }
         })
+    }
 
     CommentsService.insertComment(
       req.app.get('db'),

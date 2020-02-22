@@ -18,12 +18,20 @@ postsRouter
   .post(jsonParser, (req, res, next) => {
     const { title, content, date_posted } = req.body
     const newPost = { title, content, date_posted }
+        
+    for (const [key, value] of Object.entries(newPost)) {
+      if (typeof value === 'string') {
+        newPost[key] = value.trim()
+      }
+    }
 
-    for (const [key, value] of Object.entries(newPost))
-      if (value == null)
+    for (const [key, value] of Object.entries(newPost)) {
+      if (!value)
         return res.status(400).json({
-          error: { message: `Missing '${key}' in request body` }
+          error: { message: `Uh oh! You are missing '${key}' in your submission. Please ensure you fill out all fields!` }
         })
+    }
+    
 
     PostsService.insertPost(
       req.app.get('db'),
