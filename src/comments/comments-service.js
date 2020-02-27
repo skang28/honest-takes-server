@@ -1,3 +1,4 @@
+// CommentsService set up for CRUD operations
 const CommentsService = {
     getAllComments(knex) {
         return knex.select('*').from('comments')

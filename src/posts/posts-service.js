@@ -1,3 +1,4 @@
+// PostsService set up for CRUD operations.
 const PostsService = {
     getAllPosts(knex) {
         return knex.select('*').from('posts')

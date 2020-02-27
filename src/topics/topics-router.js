@@ -3,6 +3,7 @@ const TopicsService = require('./topics-service')
 
 const topicsRouter = express.Router()
 
+// Router for topics endpoint. Only need to retrieve all topics.
 topicsRouter
   .route('/')
   .get((req, res, next) => {

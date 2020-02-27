@@ -5,6 +5,7 @@ const CommentsService = require('./comments-service')
 const commentsRouter = express.Router()
 const jsonParser = express.json()
 
+// Router set up for comments endpoint. '/' set up for get and post
 commentsRouter
   .route('/')
   .get((req, res, next) => {
@@ -45,6 +46,7 @@ commentsRouter
       .catch(next)
   })
 
+  // Router set up for comments endpoint. Using ID, can get, delete, and patch.
   commentsRouter
   .route('/:comment_id')
   .all((req, res, next) => {

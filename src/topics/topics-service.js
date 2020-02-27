@@ -1,3 +1,4 @@
+// TopicsService set up for crud operations on topics table.
 const TopicsService = {
     getAllTopics(knex) {
         return knex.select('*').from('topics')

@@ -5,6 +5,7 @@ const PostsService = require('./posts-service')
 const postsRouter = express.Router()
 const jsonParser = express.json()
 
+// Router set up for posts endpoint. Get and post for 'all'.
 postsRouter
   .route('/')
   .get((req, res, next) => {
@@ -46,6 +47,7 @@ postsRouter
       .catch(next)
   })
 
+  // Router set up for posts endpoint. Using ID, can get, delete, and patch.
   postsRouter
   .route('/:post_id')
   .all((req, res, next) => {

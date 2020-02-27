@@ -19,6 +19,7 @@ const testComment = {
   post_id: 1
 }
 
+// tests for all endpoint functionality coded in routers for comments, posts, and topics
 describe('App', () => {
   let db 
   before(() => {
